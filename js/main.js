@@ -32,7 +32,8 @@ slider.addEventListener('mouseleave', () => {
 
 // import data.json
 
-
+const movieContainer = document.querySelector('.movie-container');
+const movieContent = document.querySelector('.movie-container__content');
 const url = `https://api.myjson.com/bins/p2dnz`;
 async function getData(url){
    try {
@@ -59,8 +60,7 @@ function createElement(info){
    container.classList.add('slider__block');
    const [myTitle, myMovie, myActions]  = [createTitle(title, year), createMovie(poster, title), createActions(comments_count, rank, likes_count)];
    [myTitle,  myMovie, myActions].forEach(item => container.append(item));
-
-
+   // console.log(info);
    return container;
 }
 
@@ -85,7 +85,29 @@ function createMovie(link, alt){
       const buttonImg = document.createElement('img');
       buttonImg.src = `../svg/${name}-button.svg`;
       btn.append(buttonImg);
-      // btn.addEventListener('click', play);
+
+      if (name === 'play'){
+         const link = 'https://www.youtube.com/embed/LM0sZZ1xFDs';
+         btn.addEventListener('click', () => {
+            movieContainer.style.display = 'block';
+            if (movieContent.firstChild){
+               movieContent.removeChild(movieContent.firstChild);
+            }
+            const movie = document.createElement('iframe');
+            movie.classList.add('movie-container__movie');
+            movie.src = link;
+            movie.frameBorder = 0;
+            movieContent.append(movie);
+            document.getElementById('close').addEventListener('click', () => {
+               movieContainer.classList.add('animBack');
+               setTimeout(() => {
+                  movieContainer.style.display = 'none';
+                  movie.remove();
+                  movieContainer.classList.remove('animBack');
+               },1000);               
+            });        
+         });
+      }
       return btn;
    }); 
    posterContainer.append(posterImage);
@@ -125,4 +147,48 @@ function createActions(comments, ranks, likes){
    actionsButtons.forEach(item => actionsContainer.append(item));
    return actionsContainer;
 }
+
+//  Coming soon buttons
+
+const buttonsSoon = document.querySelectorAll('.soon-item');
+let activeButton;
+[...buttonsSoon].forEach(btn => {
+   if (btn.classList.contains('navigation-item_active')){
+      activeButton = btn;
+   }
+   btn.addEventListener('click', e => {
+      e.preventDefault();
+      const li = e.currentTarget;
+      if (li.classList.contains('navigation-item_active')){
+         return;
+      }
+      activeButton.classList.remove('navigation-item_active');
+      activeButton = li;
+      li.classList.add('navigation-item_active');
+   });
+});
+
+//  Most popular buttons
+
+const buttonsPopular = document.querySelectorAll('.popular-item');
+let activeButtonPopular;
+[...buttonsPopular].forEach(btn => {
+   if (btn.classList.contains('navigation-item_active')){
+      activeButtonPopular = btn;
+   }
+   btn.addEventListener('click', e => {
+      e.preventDefault();
+      const li = e.currentTarget;
+      if (li.classList.contains('navigation-item_active')){
+         return;
+      }
+      activeButtonPopular.classList.remove('navigation-item_active');
+      activeButtonPopular = li;
+      li.classList.add('navigation-item_active');
+   });
+});
+
+
+
+
 

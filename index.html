@@ -51,9 +51,9 @@
                <a href="#">Coming soon</a>
             </div>
             <ul class="navigation-list">
-               <li class="navigation-item"><a href="#">All</a></li>
-               <li class="navigation-item navigation-item_active"><a href="#">Movies</a></li>
-               <li class="navigation-item"><a href="#">TV Shows</a></li>
+               <li class="soon-item navigation-item"><a href="#">All</a></li>
+               <li class="soon-item navigation-item navigation-item_active"><a href="#">Movies</a></li>
+               <li class="soon-item navigation-item"><a href="#">TV Shows</a></li>
             </ul>
             <div class="navigation-buttons-wrap">
                <ul class="navigation__buttons-list"> 
@@ -70,11 +70,49 @@
                </ul> 
             </div>
          </nav>
+      </div>      
+   </section>
+
+   <div class="movie-container">
+      <div class="movie-container__close">
+         <button id='close'>
+            <img src="./svg/quit.svg" alt="quit">
+         </button>
       </div>
-      <section class="slider">
-         <div class="slider-inner">
-         </div> 
-      </section>
+      <div class="movie-container__content"></div>
+   </div>
+
+   <section class="slider">
+      <div class="slider-inner"></div> 
+   </section>
+
+   <section class="content">
+      <div class="navigation-wrap">
+         <nav class="navigation-container">
+            <div class="navigation-title">
+               <a href="#">Most popular</a>
+            </div>
+            <ul class="navigation-list">
+               <li class="popular-item navigation-item"><a href="#">All</a></li>
+               <li class="popular-item navigation-item navigation-item_active"><a href="#">Movies</a></li>
+               <li class="popular-item navigation-item"><a href="#">TV Shows</a></li>
+            </ul>
+            <div class="navigation-buttons-wrap">
+               <ul class="navigation__buttons-list"> 
+                  <li class="navigation__buttons-item">
+                     <a href="#">
+                        <img src="./svg/card-view.svg" alt="card-view">
+                     </a>
+                  </li>
+                  <li class="navigation__buttons-item">
+                     <a href="#">
+                        <img src="./svg/list-view.svg" alt="list-view">
+                     </a>
+                  </li>
+               </ul> 
+            </div>
+         </nav>
+      </div>      
    </section>
 
    <script src="./js/main.js"></script>
