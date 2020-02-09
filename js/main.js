@@ -54,46 +54,75 @@ getData(url).then(data => {
 });
 
 function createElement(info){
-   const {title, year, poster} = info;
+   const {title, year, poster, rank, likes_count, comments_count} = info;
    const container = document.createElement('div');
    container.classList.add('slider__block');
-   const [myTitle, myYear, myMovie]  = [createTitle(title), createYear(year), createMovie(poster, title)];
-   [myTitle, myYear, myMovie].forEach(item => container.append(item))
-   // console.log(info)
-
+   const [myTitle, myMovie, myActions]  = [createTitle(title, year), createMovie(poster, title), createActions(comments_count, rank, likes_count)];
+   [myTitle,  myMovie, myActions].forEach(item => container.append(item));
 
 
    return container;
 }
 
-function createTitle(text){
+function createTitle(name, year){
    const title = document.createElement('h5');
-   title.textContent = text;
+   const data = [name, '<br/>', year];
+   data.forEach(item => title.innerHTML += item);
    title.classList.add('slider__block-title');
    return title;
-}
-
-function createYear(text){
-   const year = document.createElement('p');
-   year.textContent = text;
-   year.classList.add('slider__block-year');
-   return year;
 }
 
 function createMovie(link, alt){
    const posterContainer = document.createElement('div');
    posterContainer.classList.add('slider__block-poster')
    const posterImage = document.createElement('img');
-   posterImage.src = link;
-   posterImage.alt = alt;
+   [posterImage.src, posterImage.alt] = [link, alt];
    posterImage.classList.add('slider__block-image')
    let buttons = ['play', 'more', 'reload'];
    buttons = buttons.map(name => {
       const btn = document.createElement('div');
       btn.classList.add(`slider__block-${name}`);
+      const buttonImg = document.createElement('img');
+      buttonImg.src = `../svg/${name}-button.svg`;
+      btn.append(buttonImg);
+      // btn.addEventListener('click', play);
       return btn;
-   });
+   }); 
    posterContainer.append(posterImage);
    buttons.forEach(item => posterContainer.append(item));
    return posterContainer;
 }
+
+function createActions(comments, ranks, likes){
+   const actionsContainer = document.createElement('div');
+   actionsContainer.classList.add('slider__actions');
+   let actionsButtons = ['share', 'comment', 'rank', 'like'];
+   actionsButtons = actionsButtons.map(name => {
+      const [block, count, img] = ['div', 'p', 'img'].map(item => document.createElement(item));
+      block.classList.add('slider__actions-block');
+      switch(name){
+         case "share": {
+            count.textContent = '';    
+            img.src = `../svg/products/actions/${name}.svg`       
+         } break;
+         case "comment": {
+            count.textContent = comments || 0;  
+            img.src = `../svg/products/actions/${name}.svg`
+         } break;
+         case "rank": {
+            count.textContent = ranks || 0;  
+            img.src = `../svg/products/actions/${name}.svg`
+         } break;
+         case "like": {
+            count.textContent = likes || 0;  
+            img.src = `../svg/products/actions/${name}.svg`
+         } break;
+         default: count.textContent = '';  
+      }
+      [count, img].forEach(item => block.append(item));   
+      return block;
+   });
+   actionsButtons.forEach(item => actionsContainer.append(item));
+   return actionsContainer;
+}
+

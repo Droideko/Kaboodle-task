@@ -169,11 +169,11 @@ li
 .slider
    width: 100%
    height: 470px
-   background-color: #ffffff
    user-select: none
    cursor: pointer
    &-inner
       max-width: 100%
+      height: 100%
       overflow: hidden
       display: grid
       grid-template: 1fr/ repeat(7, 1fr)
@@ -182,17 +182,75 @@ li
          cursor: grabbing
    &__block
       width: 220px
-      height: 330px
+      height: auto
       background-color: #fff
+      cursor: auto
       &-title
-      &-year
+         font-family: Roboto Bold, sans-serif
+         font-size: 20px
+         line-height: 1.1em
+         padding: 14px 0px
+         word-wrap: normal
+         white-space: nowrap
+         overflow: hidden
+         text-overflow: ellipsis
       &-poster
-      img
+         position: relative
+         background-color: rgba(1, 11, 19, 1)
+         z-index: 1
+      &-image
          width: 100%
-         height: auto
-      &-play
+         height: 330px
+         opacity: .5
+      &-play, &-more, &-reload
+         display: grid
+         justify-items: center
+         align-items: center
+         position: absolute    
+         transition: opacity .2s ease 
+         cursor: pointer   
+         &:hover
+            opacity: .7 
+      &-play           
+         background-color: rgba(1, 11, 19, .63)
+         border-radius: 50%
+         height: 56px
+         width: 56px
+         left: 50%
+         top: 50%
+         transform: translate(-50%, -50%)   
+         img
+            width: 24px
       &-more
+         height: 28px
+         width: 36px
+         left: 9px
+         top: 7px 
       &-reload
+         height: 36px
+         width: 36px
+         top: 5px
+         right: 12px
+   &__actions
+      display: grid
+      grid-template-columns: repeat(4, 1fr)
+      height: 68px
+      &-block
+         display: grid
+         grid-template-rows: repeat(2, 34px) // ? 
+         justify-items: center
+         align-items: center
+      p
+         font-family: Proxima Nova Bold, sans-serif
+         font-size: 14px
+      img
+         height: 20px
+         width: 20px
+         cursor: pointer
+         transition: opacity .2s ease
+         &:hover
+            opacity: .7
+
 
 
 
