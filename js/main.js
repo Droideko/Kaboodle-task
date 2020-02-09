@@ -30,6 +30,35 @@ slider.addEventListener('mouseleave', () => {
    slider.classList.remove('slider-inner_active');   
 });
 
+// Vertical slider
+
+const verticalSlider = document.querySelector('.vertical-inner');
+let isDownVertical = false;
+let startY;
+let scrollTop;
+
+verticalSlider.addEventListener('mousedown', (e) => {
+   isDownVertical = true;
+   startY = e.pageY - verticalSlider.offsetTop;
+   scrollTop = verticalSlider.scrollTop;
+});
+
+verticalSlider.addEventListener('mouseup', () => {
+   isDownVertical = false;   
+});
+
+verticalSlider.addEventListener('mousemove', (e) => {
+   if (!isDownVertical) return;
+   e.preventDefault();
+   const y = e.pageY - verticalSlider.offsetTop;
+   console.log(y);
+   const walk = y - startY;
+   verticalSlider.scrollTop = scrollTop - walk;
+});
+verticalSlider.addEventListener('mouseleave', () => {
+   isDown = false; 
+});
+
 // import data.json
 
 const movieContainer = document.querySelector('.movie-container');
@@ -74,10 +103,10 @@ function createTitle(name, year){
 
 function createMovie(link, alt){
    const posterContainer = document.createElement('div');
-   posterContainer.classList.add('slider__block-poster')
+   posterContainer.classList.add('slider__block-poster');
    const posterImage = document.createElement('img');
    [posterImage.src, posterImage.alt] = [link, alt];
-   posterImage.classList.add('slider__block-image')
+   posterImage.classList.add('slider__block-image');
    let buttons = ['play', 'more', 'reload'];
    buttons = buttons.map(name => {
       const btn = document.createElement('div');
@@ -85,7 +114,6 @@ function createMovie(link, alt){
       const buttonImg = document.createElement('img');
       buttonImg.src = `../svg/${name}-button.svg`;
       btn.append(buttonImg);
-
       if (name === 'play'){
          const link = 'https://www.youtube.com/embed/LM0sZZ1xFDs';
          btn.addEventListener('click', () => {
@@ -148,46 +176,29 @@ function createActions(comments, ranks, likes){
    return actionsContainer;
 }
 
-//  Coming soon buttons
+//  Coming soon buttons & Most popular buttons
 
-const buttonsSoon = document.querySelectorAll('.soon-item');
-let activeButton;
-[...buttonsSoon].forEach(btn => {
-   if (btn.classList.contains('navigation-item_active')){
-      activeButton = btn;
-   }
-   btn.addEventListener('click', e => {
-      e.preventDefault();
-      const li = e.currentTarget;
-      if (li.classList.contains('navigation-item_active')){
-         return;
+const [buttonsSoon, buttonsPopular] = [document.querySelectorAll('.soon-item'), document.querySelectorAll('.popular-item')];
+[buttonsSoon, buttonsPopular].forEach(buttons => activeButtons(buttons));
+
+function activeButtons(buttons){
+   let activeButton;
+   [...buttons].forEach(btn => {
+      if (btn.classList.contains('navigation-item_active')){
+         activeButton = btn;
       }
-      activeButton.classList.remove('navigation-item_active');
-      activeButton = li;
-      li.classList.add('navigation-item_active');
+      btn.addEventListener('click', e => {
+         e.preventDefault();
+         const li = e.currentTarget;
+         if (li.classList.contains('navigation-item_active')){
+            return;
+         }
+         activeButton.classList.remove('navigation-item_active');
+         activeButton = li;
+         li.classList.add('navigation-item_active');
+      });
    });
-});
-
-//  Most popular buttons
-
-const buttonsPopular = document.querySelectorAll('.popular-item');
-let activeButtonPopular;
-[...buttonsPopular].forEach(btn => {
-   if (btn.classList.contains('navigation-item_active')){
-      activeButtonPopular = btn;
-   }
-   btn.addEventListener('click', e => {
-      e.preventDefault();
-      const li = e.currentTarget;
-      if (li.classList.contains('navigation-item_active')){
-         return;
-      }
-      activeButtonPopular.classList.remove('navigation-item_active');
-      activeButtonPopular = li;
-      li.classList.add('navigation-item_active');
-   });
-});
-
+}
 
 
 

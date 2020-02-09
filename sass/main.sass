@@ -301,8 +301,78 @@ li
          &:hover
             opacity: .7
 
+.vertical
+   &-slider
+      user-select: none
+      height: 700px
+      width: 100%
+   &-inner
+      height: 100%
+      max-width: 1136px
+      margin: 0 auto
+      display: grid
+      grid-template-rows: repeat(3, 1fr)
+      overflow: hidden
+   &-container
+      height: 233.3px
+      display: grid
+      align-items: center
+      &__block
+         height: 165px
+         background: grey
+      
 
 
+
+.footer
+   &-wrap
+      width: 100%
+      height: 175px
+      background-color: #010b13
+      color: #ffffff
+   &-container
+      display: grid
+      justify-items: center
+      grid-template-rows: 58px 60px 57px
+   &__logo
+      font-family: Roboto Condensed Bold Italic, sans-serif
+      font-size: 28px
+      align-self: end
+      transition: opacity .2s ease
+      &:hover
+         opacity: .7
+   &-navigation
+      align-self: center
+      display: grid
+      grid-template-columns: 51px 118px 85px 72px 152px
+      justify-items: center
+      &__list
+         position: relative
+         font-family: Roboto Condensed Italc, sans-serif
+         font-size: 24px
+         &:after
+            content: ''
+            position: absolute
+            height: 100%
+            width: 2px
+            background-color: #fff
+            right: -10px
+            transform: rotate(10deg)
+         &:last-child
+            &:after
+               content: none
+      &__link
+         color: #ffffff
+         transition: opacity .2s ease-in-out
+         &:hover
+            opacity: .7
+         
+   &__copyright
+      font-family: Roboto Condensed Italc, sans-serif
+      font-size: 18px
+      align-self: start
+
+   
 
 
 

@@ -517,4 +517,116 @@ li {
 .slider__actions img:hover {
   opacity: .7;
 }
+
+.vertical-slider {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  height: 700px;
+  width: 100%;
+}
+
+.vertical-inner {
+  height: 100%;
+  max-width: 1136px;
+  margin: 0 auto;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: (1fr)[3];
+      grid-template-rows: repeat(3, 1fr);
+  overflow: hidden;
+}
+
+.vertical-container {
+  height: 233.3px;
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.vertical-container__block {
+  height: 165px;
+  background: grey;
+}
+
+.footer-wrap {
+  width: 100%;
+  height: 175px;
+  background-color: #010b13;
+  color: #ffffff;
+}
+
+.footer-container {
+  display: -ms-grid;
+  display: grid;
+  justify-items: center;
+  -ms-grid-rows: 58px 60px 57px;
+      grid-template-rows: 58px 60px 57px;
+}
+
+.footer__logo {
+  font-family: Roboto Condensed Bold Italic, sans-serif;
+  font-size: 28px;
+  -ms-flex-item-align: end;
+      -ms-grid-row-align: end;
+      align-self: end;
+  -webkit-transition: opacity .2s ease;
+  transition: opacity .2s ease;
+}
+
+.footer__logo:hover {
+  opacity: .7;
+}
+
+.footer-navigation {
+  -ms-grid-row-align: center;
+      align-self: center;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 51px 118px 85px 72px 152px;
+      grid-template-columns: 51px 118px 85px 72px 152px;
+  justify-items: center;
+}
+
+.footer-navigation__list {
+  position: relative;
+  font-family: Roboto Condensed Italc, sans-serif;
+  font-size: 24px;
+}
+
+.footer-navigation__list:after {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 2px;
+  background-color: #fff;
+  right: -10px;
+  -webkit-transform: rotate(10deg);
+          transform: rotate(10deg);
+}
+
+.footer-navigation__list:last-child:after {
+  content: none;
+}
+
+.footer-navigation__link {
+  color: #ffffff;
+  -webkit-transition: opacity .2s ease-in-out;
+  transition: opacity .2s ease-in-out;
+}
+
+.footer-navigation__link:hover {
+  opacity: .7;
+}
+
+.footer__copyright {
+  font-family: Roboto Condensed Italc, sans-serif;
+  font-size: 18px;
+  -ms-flex-item-align: start;
+      -ms-grid-row-align: start;
+      align-self: start;
+}
 /*# sourceMappingURL=main.css.map */
