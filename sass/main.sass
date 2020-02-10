@@ -48,8 +48,7 @@ li
          border-left: 2px solid #ffc107
          padding: 13px 9px
          white-space: nowrap
-         overflow: hidden
-         
+         overflow: hidden    
    &__list
       display: grid
       grid-template-columns: repeat(3, 1fr)
@@ -67,8 +66,10 @@ li
             padding-left: 6px
          img
             width: 27px
-         a:hover
-            opacity: .6
+         a
+            transition: opacity .2s ease
+            &:hover
+               opacity: .7
       &-item:nth-of-type(3)
          img
             width: 30px
@@ -302,14 +303,18 @@ li
             opacity: .7
 
 .vertical
-   &-slider
+   &-wrap
       user-select: none
       height: 700px
       width: 100%
-   &-inner
+   &-slider
+      position: relative
       height: 100%
       max-width: 1136px
       margin: 0 auto
+   &-inner
+      height: 100%
+      width: 100%    
       display: grid
       grid-template-rows: repeat(3, 1fr)
       overflow: hidden
@@ -318,18 +323,131 @@ li
       display: grid
       align-items: center
       &__block
-         height: 165px
-         background: grey
-      
-
-
+         height: auto
+         display: grid
+         grid-template-columns: repeat(2, 1fr) 8fr
+         grid-column-gap: 10px
+      &__poster
+         position: relative
+         height: 100%
+         width: 100%
+      &__image
+         height: 100%
+         width: 100%
+         object-fit: cover 
+      &__play
+         display: grid
+         height: 56px
+         width: 56px
+         position: absolute
+         background-color: rgba(1, 11, 19, .67)
+         border-radius: 50%
+         cursor: pointer
+         top: 50%
+         left: 50%
+         transform: translate(-50%, -50%)
+         transition: opacity .2s ease
+         img
+            align-self: center
+            justify-self: center
+            height: 22px
+            width: 22px
+         &:hover
+            opacity: .7
+      &__rank
+         position: relative
+         object, p
+            position: absolute
+            top: 50%
+            left: 50%
+            transform: translate(-50%, -50%)
+         p
+            font-family: Gotham Bold, sans-serif
+            font-size: 28px
+            color: #22ca71
+      &__inner
+         position: relative
+      &__title, &__info
+         font-family: Roboto Condensed Bold, sans-serif
+         font-size: 16px
+      &__title   
+         color: #389ef2   
+      &__info
+         color: #010b13
+      &__text
+         font-family: Roboto Regular, sans-serif
+         font-size: 18px
+         color: #4b555d
+         margin-top: 15px
+         height: 75px
+         width: 100%
+         word-wrap: normal
+         overflow: hidden
+      &__actions
+         width: 395px
+         display: grid
+         grid-template-columns: repeat(4, 1fr)
+         &-block
+            display: grid
+            grid-template-columns: repeat(2, 1fr)
+            p
+               position: relative
+               font-family: Proxima Nova Bold, sans-serif
+               font-size: 17.5px
+               align-self: center
+               justify-self: center
+               &:after
+                  content: ''
+                  position: absolute
+                  height: 100%
+                  width: 2px
+                  background-color: #000000
+                  right: -14px
+            img
+               height: 26px
+               width: 26px
+               justify-self: center
+               cursor: pointer
+               transition: opacity .2s ease
+               &:hover
+                  opacity: .7
+            &:first-child
+               grid-template-columns: 1fr
+      &__link
+         position: absolute
+         right: 5px
+         bottom: 15px
+         color: #389ef2
+         text-decoration: underline
+         font-size: 18px
+         font-family: Roboto Condensed Bold, sans-serif
+         transition: opacity .2s ease
+         &:hover
+            opacity: .7
+   &__arrow
+      position: absolute
+      right: 0
+      border: none
+      outline: none
+      background-color: transparent
+      cursor: pointer
+      width: 25px
+      height: 8px
+      background: url('../svg/verticali-slider-arrows.svg') no-repeat 50% 50%/cover
+      &-top
+         top: 38px
+      &-bottom
+         bottom: 38px
+         transform: rotate(180deg)
 
 .footer
    &-wrap
+      position: relative
       width: 100%
       height: 175px
       background-color: #010b13
       color: #ffffff
+      overflow: hidden
    &-container
       display: grid
       justify-items: center
@@ -366,12 +484,22 @@ li
          transition: opacity .2s ease-in-out
          &:hover
             opacity: .7
-         
    &__copyright
       font-family: Roboto Condensed Italc, sans-serif
       font-size: 18px
       align-self: start
+   &__image
+      position: absolute
+      width: 242px  
+      &-one
+         top: 40px
+         left: -80px
+      &-two
+         top: -180px
+         right: -50px
 
+
+   
    
 
 
