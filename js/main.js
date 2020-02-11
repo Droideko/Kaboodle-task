@@ -262,13 +262,26 @@ function createPoster(link, alt){
 function createGrade(rank){
    const rankContainer = document.createElement('div');
    rankContainer.classList.add('vertical-container__rank');
-   const svg = document.createElement('object');   
-   svg.data = '../svg/circle.svg';
-   svg.type = 'image/svg+xml';
+   const svg = createSVG(rank);
    const text = document.createElement('p');
    text.textContent = rank;
    [svg, text].forEach(item => rankContainer.append(item));
    return rankContainer;
+
+   function createSVG(rank){
+      const radiusCircle = 35;
+      const lengthCircle = Math.ceil(2* Math.PI * radiusCircle);
+      const offsetCircle = lengthCircle - (lengthCircle * rank) / 10;
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('style', "width: 80; height: 80");
+      const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      circle.setAttribute('style', "stroke:#22ca71; stroke-width:10; cx:50%; cy:50%; r:44%; fill:transparent;")
+      circle.setAttribute('stroke-dasharray', `${lengthCircle}`);
+      circle.setAttribute('stroke-dashoffset', `${offsetCircle}`);
+      circle.classList.add('circle');
+      svg.append(circle);  
+      return svg;
+   }
 }
 
 function createPopularInfo(title, year, director, writer, content, likes, rank, comments){
@@ -332,5 +345,3 @@ function createPopularInfo(title, year, director, writer, content, likes, rank, 
       return actionsContainer;
    } 
 }
-
-
